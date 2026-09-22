@@ -42,18 +42,44 @@ Header:
 Delay.h, stdutils.h, gpioi.h
 
 # PIN DIAGRAM :
- 
+
+<img width="847" height="506" alt="image" src="https://github.com/user-attachments/assets/b8f41601-c353-45bd-b765-5f49452b105f" />
 
 # CIRCUIT DIAGRAM:
- 
+<img width="672" height="378" alt="image" src="https://github.com/user-attachments/assets/41ca958f-3024-4992-a10b-01f1cbbb56bc" />
+
  
 # PROGRAM:
-
+```
+#include <lpc17xx.h> 
+#include "delay.h" //User defined library which conatins the delay routines 
+#include "gpio.h" 
+#define LED P1_29 // Led is connected to P1.29 
+/* start the main program */ 
+int main() 
+{ 
+  SystemInit(); //Clock and PLL configuration 
+  GPIO_PinFunction(LED,PINSEL_FUNC_0); // Configure Pin for Gpio 
+  GPIO_PinDirection(LED,OUTPUT); // Configure the pin as OUTPUT 
+  GPIO_PinWrite(LED,LOW); 
+  while(1) 
+ { 
+   /* Turn On all the leds and wait for 100ms */ 
+   GPIO_PinWrite(LED,HIGH); // Make all the Port pin as high 
+   DELAY_ms(100); 
+ 
+   GPIO_PinWrite(LED,LOW); // Make all the Port pin as low 
+   DELAY_ms(100); 
+  } 
+}
+```
 
  
 # Output:
+<img width="900" height="651" alt="image" src="https://github.com/user-attachments/assets/b2da852d-bbcd-49df-abb4-c414665567bc" />
 
-
+# Result:
+Thus a LED is interfaced with ARM LPC 1768 Microprocessor and its blinking was verified sucessfully.
 
 
 
